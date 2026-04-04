@@ -140,7 +140,7 @@ def plot_training_curve(train_losses, val_losses=None, best_epoch=None, save_pat
         ax.axvline(x=best_epoch, color='r', linestyle='--', alpha=0.6, label='Early stop (epoch ' + str(best_epoch) + ')')
     ax.set_xlabel('Epoch')
     ax.set_ylabel('MSE Loss')
-    ax.set_title('Training Curve (Lecture 16, Slide 9)')
+    ax.set_title('Training Curve')
     ax.legend()
     ax.grid(True, alpha=0.3)
     plt.tight_layout()
@@ -165,7 +165,7 @@ def plot_architecture_comparison(results_dict, save_path=None, show=False):
     ax.set_xticks(x)
     ax.set_xticklabels(names, rotation=30, ha='right')
     ax.set_ylabel('Error (wins)')
-    ax.set_title('Architecture Comparison (Lecture 13, Slides 14–15)')
+    ax.set_title('Architecture Comparison')
     ax.legend()
     ax.grid(True, axis='y', alpha=0.3)
     plt.tight_layout()
@@ -190,7 +190,7 @@ def plot_regularization_comparison(results_dict, save_path=None, show=False):
     ax.set_xticks(x)
     ax.set_xticklabels(names, rotation=30, ha='right')
     ax.set_ylabel('Error (wins)')
-    ax.set_title('Regularization Comparison (Lecture 16, Slides 22–28)')
+    ax.set_title('Regularization Comparison')
     ax.legend()
     ax.grid(True, axis='y', alpha=0.3)
     plt.tight_layout()
@@ -202,13 +202,8 @@ def plot_regularization_comparison(results_dict, save_path=None, show=False):
     return ax
 
 def split_train_val(X_train, y_train, val_fraction=VAL_FRACTION):
-    """
-    Hold out a fraction of training data for validation
-    (Lecture 15, Slide 40; Lecture 16, Slide 3).
-    Uses temporal ordering: last val_fraction of rows become validation.
-    """
-    n       = len(y_train)
-    n_val   = max(1, int(n * val_fraction))
+    n = len(y_train)
+    n_val = max(1, int(n * val_fraction))
     n_train = n - n_val
     return (X_train[:n_train], y_train[:n_train],
             X_train[n_train:], y_train[n_train:])
