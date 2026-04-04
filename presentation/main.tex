@@ -154,7 +154,7 @@ Sample text in green box. The title of the block is ``Examples".
 {\scriptsize\color{gray}%
 FNN ~$\cdot$~ 15\,$\to$\,64\,$\to$\,32\,$\to$\,1 ~$\cdot$~ 3,137 params ~$\cdot$~ ReLU + linear output ~$\cdot$~ MSE loss ~$\cdot$~ Adam}
  
-\vspace{4pt}
+\vspace{2pt}
 \begin{columns}[T]
  
 % ── LEFT COLUMN ──
@@ -226,9 +226,77 @@ Early stopped at epoch 249 / 269 --- no overfitting gap}
  
 \end{frame}
 
-\begin{frame}
-	\frametitle{Slide 4 -- Maximum: \textit{Do not go beyond this}}
-	This is some text in the last slide.
+\begin{frame}[t]
+\frametitle{SVR Results}
+
+\vspace{-2pt}
+{\scriptsize\color{gray}%
+SVR ~$\cdot$~ kernels: linear / RBF ~$\cdot$~ GridSearchCV (MAE) ~$\cdot$~ best: linear, $C=0.1$, $\epsilon=0.1$}
+
+\vspace{0pt}
+\setlength{\columnsep}{2pt}
+\begin{columns}[T,totalwidth=\textwidth]
+
+% ── LEFT COLUMN ──
+\begin{column}{0.495\textwidth}
+{\scriptsize\textbf{Kernel comparison (CV MAE)}}
+
+\vspace{0pt}
+\includegraphics[width=\textwidth,height=0.30\textheight,keepaspectratio]{../results/svr/svr_kernel_cv_mae.png}
+
+\vspace{0pt}
+{\scriptsize\textbf{Residual distribution (test set)}}
+
+\vspace{-1pt}
+\includegraphics[width=\textwidth,height=0.28\textheight,keepaspectratio]{../results/svr/svr_residual_hist.png}
+\end{column}
+
+% ── RIGHT COLUMN ──
+\begin{column}{0.495\textwidth}
+
+\begin{block}{\tiny vs.\ Pythagorean baseline (no learning)}
+\centering\vspace{-1pt}
+\begin{columns}[c]
+\begin{column}{0.45\linewidth}
+\centering
+{\tiny\color{gray}MAE}\\[0pt]
+{\small\textbf{\color{teal}8.52}}\\[-1pt]
+{\scriptsize\color{gray}vs 10.73}
+\end{column}
+\begin{column}{0.45\linewidth}
+\centering
+{\tiny\color{gray}RMSE}\\[0pt]
+{\small\textbf{\color{teal}10.98}}\\[-1pt]
+{\scriptsize\color{gray}vs 13.48}
+\end{column}
+\end{columns}
+\vspace{-1pt}
+\end{block}
+
+\vspace{-4pt}
+{\scriptsize\textbf{Predicted vs.\ actual (test set)}}
+
+\vspace{-1pt}
+\begin{columns}[c]
+\begin{column}{0.69\linewidth}
+\includegraphics[width=\textwidth,height=0.44\textheight,keepaspectratio]{../results/svr/svr_pred_vs_actual.png}
+\end{column}
+\begin{column}{0.29\linewidth}
+\centering
+\colorbox{teal!10}{%
+\parbox{1.95cm}{\centering\vspace{2pt}
+{\scriptsize\textbf{\color{teal}${\sim}$21\% MAE}}\\
+{\scriptsize\textbf{\color{teal}improve}}\\[-1pt]
+{\scriptsize\textbf{\color{teal}ment}}\\[2pt]
+{\tiny\color{gray}over no-learning}\\
+{\tiny\color{gray}baseline}
+\vspace{2pt}}}
+\end{column}
+\end{columns}
+
+\end{column}
+\end{columns}
+
 \end{frame}
 
 \end{document}
